@@ -14,6 +14,7 @@ import {
   View,
   TouchableOpacity,
   FlatList,
+  TextInput,
 } from "react-native";
 import { withAuthenticator } from "aws-amplify-react-native";
 import { graphql, compose } from "react-apollo";
@@ -70,6 +71,7 @@ const TodoSubscription = gql`
 
 function App(props) {
   const [listTodo, setListTodo] = useState([]);
+  const [todoText, setTodoText] = useState("");
   useEffect(() => {
     try {
       props.data.subscribeToMore(
@@ -88,18 +90,19 @@ function App(props) {
   }, [props.data.listTodos]);
 
   const createNewTodo = async () => {
+    if (!todoText) return;
     try {
       props.createTodo({
-        name: "Tesst",
+        name: todoText,
         updatedAt: "2020-07-03T07:57:40.896Z",
       });
+      setTodoText("");
     } catch (error) {
       console.log("errrorrrr:", error);
     }
   };
 
   function Item({ title }) {
-    console.log("name", title);
     return (
       <View
         style={{
@@ -116,6 +119,11 @@ function App(props) {
 
   return (
     <View>
+      <TextInput
+        style={{ height: 40, borderColor: "gray", borderWidth: 1 }}
+        onChangeText={(text) => setTodoText(text)}
+        value={todoText}
+      />
       <TouchableOpacity
         onPress={createNewTodo}
         style={{ backgroundColor: "red", padding: 10, width: 100 }}
