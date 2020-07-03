@@ -1,0 +1,19 @@
+{
+    "master": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-deva-master-85811-authRole",
+            "UnauthRoleArn": "arn:aws:iam::304637142719:role/amplify-deva-master-85811-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::304637142719:role/amplify-deva-master-85811-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-deva-master-85811-deployment",
+            "UnauthRoleName": "amplify-deva-master-85811-unauthRole",
+            "StackName": "amplify-deva-master-85811",
+            "StackId": "arn:aws:cloudformation:us-east-1:304637142719:stack/amplify-deva-master-85811/803fcfc0-bc07-11ea-8584-12301089d57f"
+        },
+        "categories": {
+            "auth": {
+                "deva85b36224": {}
+            }
+        }
+    }
+}

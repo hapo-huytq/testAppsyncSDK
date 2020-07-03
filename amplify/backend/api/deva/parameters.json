@@ -1,0 +1,11 @@
+{
+    "AppSyncApiName": "deva",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": "false",
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authdeva85b36224",
+            "Outputs.UserPoolId"
+        ]
+    }
+}
