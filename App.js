@@ -15,6 +15,7 @@ import {
   TouchableOpacity,
   FlatList,
   TextInput,
+  Alert,
 } from "react-native";
 import { withAuthenticator } from "aws-amplify-react-native";
 import { graphql, compose } from "react-apollo";
@@ -24,6 +25,10 @@ import { buildSubscription } from "aws-appsync";
 import { onCreateTodo } from "./src/graphql/subscriptions";
 import { graphqlMutation } from "aws-appsync-react";
 import gql from "graphql-tag";
+import {
+  setJSExceptionHandler,
+  setNativeExceptionHandler,
+} from "react-native-exception-handler";
 
 const instructions = Platform.select({
   ios: "Press Cmd+R to reload,\n" + "Cmd+D or shake for dev menu",
@@ -68,6 +73,22 @@ const TodoSubscription = gql`
     }
   }
 `;
+
+const errorHandler = (e, isFatal) => {
+  Alert.alert(
+    "Unexpected error",
+    `
+    Error:${isFatal ? "Fatal:" : ""} ${e.name} ${e.message}
+    XXXCVXCV
+    `,
+    [
+      {
+        test: "OK",
+      },
+    ]
+  );
+};
+setJSExceptionHandler(errorHandler, true);
 
 function App(props) {
   const [listTodo, setListTodo] = useState([]);
